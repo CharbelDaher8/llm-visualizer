@@ -10,6 +10,12 @@
   cursor: grabbing;
 }
 
+.canvas.dragOver {
+  outline: 2px dashed var(--drop-zone-border);
+  outline-offset: -4px;
+  background: var(--drop-zone-bg);
+}
+
 .svg {
   width: 100%;
   height: 100%;
@@ -58,16 +64,67 @@
   width: 30px;
   height: 30px;
   border-radius: 4px;
-  background: white;
-  border: 1px solid #ddd;
+  background: var(--control-btn-bg);
+  border: 1px solid var(--control-btn-border);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  color: #666;
+  color: var(--control-btn-color);
   transition: background 0.15s;
 }
 
 .controlBtn:hover {
-  background: #f0f0f0;
+  background: var(--control-btn-hover);
+}
+
+.exportMenu {
+  position: absolute;
+  bottom: 36px;
+  right: 0;
+  background: var(--control-btn-bg);
+  border: 1px solid var(--control-btn-border);
+  border-radius: 6px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+.exportBtn {
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: none;
+  white-space: nowrap;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.exportBtn:hover {
+  background: var(--control-btn-hover);
+}
+
+.dropOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.dropText {
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.9;
 }

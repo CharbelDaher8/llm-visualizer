@@ -92,3 +92,9 @@ export interface ModelMetadata {
   numExperts?: number;
   numExpertsPerToken?: number;
 }
+
+export interface LoadedModel {
+  id: string;
+  graph: ArchitectureGraph;
+  metadata: ModelMetadata;
+}

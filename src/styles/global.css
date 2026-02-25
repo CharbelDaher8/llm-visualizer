@@ -31,6 +31,99 @@
   --font-size-base: 12px;
   --font-size-md: 13px;
   --font-size-lg: 14px;
+
+  /* SVG node fills */
+  --node-body-bg: #ffffff;
+  --node-io-bg: #f5f5f5;
+  --node-residual-bg: #f9f9f9;
+  --node-stroke: #d0d0d0;
+  --node-shadow-fill: rgba(0, 0, 0, 0.04);
+  --node-text-sublabel: #888888;
+  --node-text-io: #666666;
+  --node-text-residual: #888888;
+
+  /* SVG edges */
+  --edge-stroke: #aaaaaa;
+  --edge-label-color: #bbbbbb;
+
+  /* SVG groups */
+  --group-stroke-color: #bbbbbb;
+  --group-label-bg: #ffffff;
+  --group-label-text: #888888;
+
+  /* Controls */
+  --control-btn-bg: #ffffff;
+  --control-btn-border: #dddddd;
+  --control-btn-color: #666666;
+  --control-btn-hover: #f0f0f0;
+
+  /* Inputs */
+  --input-bg: #fafafa;
+  --btn-secondary-bg: #f0f0f0;
+  --btn-secondary-hover: #e4e4e4;
+
+  /* Multi-model */
+  --model-label-bg: rgba(255, 255, 255, 0.9);
+  --model-label-border: #e0e0e0;
+
+  /* Drop zone */
+  --drop-zone-border: #4a90d9;
+  --drop-zone-bg: rgba(74, 144, 217, 0.05);
+}
+
+:root[data-theme="dark"] {
+  --canvas-bg: #1a1a1a;
+  --sidebar-bg: #242424;
+  --sidebar-border: #383838;
+  --header-bg: #242424;
+  --header-border: #383838;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --accent: #5a9fd4;
+  --node-bg: #2d2d2d;
+  --node-border: #4a4a4a;
+  --node-shadow: rgba(0, 0, 0, 0.3);
+  --edge-color: #5a5a5a;
+  --group-border: #4a4a4a;
+
+  /* SVG node fills */
+  --node-body-bg: #2d2d2d;
+  --node-io-bg: #333333;
+  --node-residual-bg: #2a2a2a;
+  --node-stroke: #4a4a4a;
+  --node-shadow-fill: rgba(0, 0, 0, 0.15);
+  --node-text-sublabel: #999999;
+  --node-text-io: #a0a0a0;
+  --node-text-residual: #999999;
+
+  /* SVG edges */
+  --edge-stroke: #5a5a5a;
+  --edge-label-color: #666666;
+
+  /* SVG groups */
+  --group-stroke-color: #4a4a4a;
+  --group-label-bg: #2d2d2d;
+  --group-label-text: #999999;
+
+  /* Controls */
+  --control-btn-bg: #333333;
+  --control-btn-border: #4a4a4a;
+  --control-btn-color: #a0a0a0;
+  --control-btn-hover: #3d3d3d;
+
+  /* Inputs */
+  --input-bg: #1e1e1e;
+  --btn-secondary-bg: #333333;
+  --btn-secondary-hover: #3d3d3d;
+
+  /* Multi-model */
+  --model-label-bg: rgba(36, 36, 36, 0.9);
+  --model-label-border: #383838;
+
+  /* Drop zone */
+  --drop-zone-border: #5a9fd4;
+  --drop-zone-bg: rgba(90, 159, 212, 0.08);
 }
 
 html, body, #root {

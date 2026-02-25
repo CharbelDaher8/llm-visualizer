@@ -20,7 +20,7 @@ export function GraphGroupComponent({ group }: GraphGroupProps) {
         rx={8}
         ry={8}
         fill="none"
-        stroke="#bbb"
+        stroke="var(--group-stroke-color)"
         strokeWidth={1.5}
         strokeDasharray="6 4"
       />
@@ -31,19 +31,19 @@ export function GraphGroupComponent({ group }: GraphGroupProps) {
         width={labelWidth(label, repeatCount)}
         height={20}
         rx={3}
-        fill="white"
+        fill="var(--group-label-bg)"
       />
       <text
         x={left + 14}
         y={top + 1}
         fontSize={11}
-        fill="#888"
+        fill="var(--group-label-text)"
         fontWeight={500}
         dominantBaseline="central"
       >
         {label}
         {repeatCount > 1 && (
-          <tspan fill="#4a90d9" fontWeight={600}> ×{repeatCount}</tspan>
+          <tspan fill="var(--accent)" fontWeight={600}> x{repeatCount}</tspan>
         )}
       </text>
     </g>

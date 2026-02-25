@@ -34,14 +34,14 @@ export function GraphEdgeComponent({ edge, fromNode, toNode }: GraphEdgeProps) {
       <path
         d={path}
         fill="none"
-        stroke="#aaa"
+        stroke="var(--edge-stroke)"
         strokeWidth={1.2}
         strokeDasharray={edge.dashed ? '4 3' : undefined}
       />
       {!edge.dashed && (
         <polygon
           points={arrowheadPoints(toTop.x, toTop.y, angle)}
-          fill="#aaa"
+          fill="var(--edge-stroke)"
         />
       )}
       {edge.label && (
@@ -49,7 +49,7 @@ export function GraphEdgeComponent({ edge, fromNode, toNode }: GraphEdgeProps) {
           x={(fromBottom.x + toTop.x) / 2 + (dx > 0 ? 8 : -8)}
           y={(fromBottom.y + toTop.y) / 2}
           fontSize={9}
-          fill="#bbb"
+          fill="var(--edge-label-color)"
           textAnchor="middle"
           dominantBaseline="central"
           fontStyle="italic"

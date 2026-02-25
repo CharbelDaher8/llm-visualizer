@@ -30,8 +30,8 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
           height={height}
           rx={height / 2}
           ry={height / 2}
-          fill="#f5f5f5"
-          stroke={selected ? '#4a90d9' : '#ccc'}
+          fill="var(--node-io-bg)"
+          stroke={selected ? 'var(--accent)' : 'var(--node-stroke)'}
           strokeWidth={selected ? 2 : 1}
         />
         <text
@@ -41,7 +41,7 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
           dominantBaseline="central"
           fontSize={12}
           fontWeight={500}
-          fill="#666"
+          fill="var(--node-text-io)"
         >
           {label}
         </text>
@@ -61,8 +61,8 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
           cx={x}
           cy={y}
           r={r}
-          fill="#f9f9f9"
-          stroke={selected ? '#4a90d9' : '#ccc'}
+          fill="var(--node-residual-bg)"
+          stroke={selected ? 'var(--accent)' : 'var(--node-stroke)'}
           strokeWidth={selected ? 2 : 1}
         />
         <text
@@ -72,7 +72,7 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
           dominantBaseline="central"
           fontSize={10}
           fontWeight={600}
-          fill="#888"
+          fill="var(--node-text-residual)"
         >
           +
         </text>
@@ -94,7 +94,7 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
         height={height}
         rx={BORDER_RADIUS}
         ry={BORDER_RADIUS}
-        fill="rgba(0,0,0,0.04)"
+        fill="var(--node-shadow-fill)"
       />
       {/* Background */}
       <rect
@@ -104,8 +104,8 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
         height={height}
         rx={BORDER_RADIUS}
         ry={BORDER_RADIUS}
-        fill="white"
-        stroke={selected ? '#4a90d9' : '#d0d0d0'}
+        fill="var(--node-body-bg)"
+        stroke={selected ? 'var(--accent)' : 'var(--node-stroke)'}
         strokeWidth={selected ? 2 : 1}
       />
       {/* Colored header bar */}
@@ -152,7 +152,7 @@ export function GraphNodeComponent({ node, selected, onSelect }: GraphNodeProps)
           textAnchor="middle"
           dominantBaseline="central"
           fontSize={10}
-          fill="#888"
+          fill="var(--node-text-sublabel)"
         >
           {sublabel}
         </text>

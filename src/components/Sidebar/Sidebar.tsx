@@ -1,49 +1,89 @@
-import type { ModelMetadata, GraphNode } from '../../core/types';
+import type { LoadedModel, GraphNode } from '../../core/types';
 import { nodeColors } from '../../styles/theme';
 import styles from './Sidebar.module.css';
 
+const MODEL_COLORS = [
+  '#4a90d9', '#e8913a', '#5cb85c', '#9b59b6',
+  '#e74c3c', '#1abc9c', '#f39c12', '#3498db',
+];
+
 interface SidebarProps {
-  metadata: ModelMetadata | null;
-  selectedNode: GraphNode | null;
+  models: LoadedModel[];
+  selectedNodeId: string | null;
+  onRemoveModel: (modelId: string) => void;
 }
 
-export function Sidebar({ metadata, selectedNode }: SidebarProps) {
+export function Sidebar({ models, selectedNodeId, onRemoveModel }: SidebarProps) {
+  // Find the selected node across all models
+  let selectedNode: GraphNode | null = null;
+  let selectedModelName = '';
+  if (selectedNodeId) {
+    const colonIdx = selectedNodeId.indexOf(':');
+    if (colonIdx !== -1) {
+      const modelId = selectedNodeId.substring(0, colonIdx);
+      const nodeId = selectedNodeId.substring(colonIdx + 1);
+      const model = models.find(m => m.id === modelId);
+      if (model) {
+        selectedNode = model.graph.nodes.find(n => n.id === nodeId) ?? null;
+        selectedModelName = model.metadata.name;
+      }
+    }
+  }
+
   return (
     <aside className={styles.sidebar}>
-      {metadata ? (
-        <>
-          <div className={styles.section}>
-            <div className={styles.sectionTitle}>Model</div>
-            <div className={styles.modelName}>{metadata.name}</div>
-            <div className={styles.modelType}>
-              {metadata.modelType}
-              {' '}
-              <span className={metadata.isMoE ? styles.badgeMoE : styles.badgeDense}>
-                {metadata.isMoE ? 'MoE' : 'Dense'}
-              </span>
+      {models.length > 0 ? (
+        models.map((model, i) => {
+          const color = MODEL_COLORS[i % MODEL_COLORS.length];
+          const meta = model.metadata;
+          return (
+            <div key={model.id} className={styles.section}>
+              <div className={styles.modelHeader}>
+                <div className={styles.sectionTitle}>
+                  {models.length > 1 && (
+                    <span className={styles.modelDot} style={{ background: color }} />
+                  )}
+                  Model
+                </div>
+                {models.length > 1 && (
+                  <button
+                    className={styles.removeBtn}
+                    onClick={() => onRemoveModel(model.id)}
+                    title="Remove this model"
+                  >
+                    x
+                  </button>
+                )}
+              </div>
+              <div className={styles.modelName}>{meta.name}</div>
+              <div className={styles.modelType}>
+                {meta.modelType}
+                {' '}
+                <span className={meta.isMoE ? styles.badgeMoE : styles.badgeDense}>
+                  {meta.isMoE ? 'MoE' : 'Dense'}
+                </span>
+              </div>
+              <div className={styles.archDetails}>
+                <Row label="Est. parameters" value={meta.estimatedParams} />
+                <Row label="Hidden size" value={fmt(meta.hiddenSize)} />
+                <Row label="Layers" value={fmt(meta.numLayers)} />
+                <Row label="Attention heads" value={fmt(meta.numHeads)} />
+                <Row label="KV heads" value={fmt(meta.numKVHeads)} />
+                <Row label="Intermediate size" value={fmt(meta.intermediateSize)} />
+                <Row label="Vocab size" value={fmt(meta.vocabSize)} />
+                <Row label="Max seq. length" value={fmt(meta.maxSeqLen)} />
+                <Row label="Norm type" value={meta.normType} />
+                <Row label="Activation" value={meta.activation} />
+                {meta.isMoE && (
+                  <>
+                    <Row label="Num experts" value={fmt(meta.numExperts ?? 0)} />
+                    <Row label="Experts/token" value={fmt(meta.numExpertsPerToken ?? 0)} />
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-
-          <div className={styles.section}>
-            <div className={styles.sectionTitle}>Architecture</div>
-            <Row label="Est. parameters" value={metadata.estimatedParams} />
-            <Row label="Hidden size" value={fmt(metadata.hiddenSize)} />
-            <Row label="Layers" value={fmt(metadata.numLayers)} />
-            <Row label="Attention heads" value={fmt(metadata.numHeads)} />
-            <Row label="KV heads" value={fmt(metadata.numKVHeads)} />
-            <Row label="Intermediate size" value={fmt(metadata.intermediateSize)} />
-            <Row label="Vocab size" value={fmt(metadata.vocabSize)} />
-            <Row label="Max seq. length" value={fmt(metadata.maxSeqLen)} />
-            <Row label="Norm type" value={metadata.normType} />
-            <Row label="Activation" value={metadata.activation} />
-            {metadata.isMoE && (
-              <>
-                <Row label="Num experts" value={fmt(metadata.numExperts ?? 0)} />
-                <Row label="Experts/token" value={fmt(metadata.numExpertsPerToken ?? 0)} />
-              </>
-            )}
-          </div>
-        </>
+          );
+        })
       ) : (
         <div className={styles.section}>
           <div className={styles.sectionTitle}>Model</div>
@@ -57,6 +97,9 @@ export function Sidebar({ metadata, selectedNode }: SidebarProps) {
         <div className={styles.sectionTitle}>Selected Node</div>
         {selectedNode ? (
           <>
+            {models.length > 1 && selectedModelName && (
+              <div className={styles.selectedModelLabel}>{selectedModelName}</div>
+            )}
             <div className={styles.nodeHeader}>
               <div
                 className={styles.nodeColorDot}
