@@ -1,0 +1,132 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  height: 48px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: -0.3px;
+}
+
+.logoAccent {
+  color: var(--accent);
+}
+
+.divider {
+  width: 1px;
+  height: 24px;
+  background: var(--sidebar-border);
+}
+
+.fetchGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.input {
+  width: 260px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--sidebar-border);
+  border-radius: 4px;
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btnPrimary {
+  composes: btn;
+  background: var(--accent);
+  color: white;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+}
+
+.btnPrimary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnSecondary {
+  composes: btn;
+  background: #f0f0f0;
+  color: var(--text-primary);
+  border: 1px solid var(--sidebar-border);
+}
+
+.btnSecondary:hover {
+  background: #e4e4e4;
+}
+
+.presets {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 4px;
+}
+
+.presetsLabel {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 2px;
+}
+
+.presetBtn {
+  composes: btn;
+  background: transparent;
+  color: var(--accent);
+  font-size: var(--font-size-sm);
+  padding: 0 8px;
+  border-radius: 3px;
+}
+
+.presetBtn:hover {
+  background: rgba(74, 144, 217, 0.08);
+}
+
+.error {
+  font-size: var(--font-size-sm);
+  color: #d32f2f;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spacer {
+  flex: 1;
+}

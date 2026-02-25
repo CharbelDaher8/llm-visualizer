@@ -1,0 +1,105 @@
+/** Preset model configs for quick demo */
+
+export interface Preset {
+  name: string;
+  description: string;
+  config: Record<string, unknown>;
+}
+
+export const presets: Preset[] = [
+  {
+    name: 'GPT-2 (124M)',
+    description: 'Classic dense transformer',
+    config: {
+      model_type: 'gpt2',
+      architectures: ['GPT2LMHeadModel'],
+      n_embd: 768,
+      n_layer: 12,
+      n_head: 12,
+      vocab_size: 50257,
+      n_positions: 1024,
+      activation_function: 'gelu_new',
+      tie_word_embeddings: true,
+    },
+  },
+  {
+    name: 'Llama 3.1 8B',
+    description: 'Dense model with GQA and RoPE',
+    config: {
+      model_type: 'llama',
+      architectures: ['LlamaForCausalLM'],
+      hidden_size: 4096,
+      intermediate_size: 14336,
+      num_hidden_layers: 32,
+      num_attention_heads: 32,
+      num_key_value_heads: 8,
+      vocab_size: 128256,
+      max_position_embeddings: 131072,
+      rms_norm_eps: 1e-5,
+      hidden_act: 'silu',
+      rope_theta: 500000.0,
+      tie_word_embeddings: false,
+    },
+  },
+  {
+    name: 'Mixtral 8x7B',
+    description: 'Sparse MoE with 8 experts',
+    config: {
+      model_type: 'mixtral',
+      architectures: ['MixtralForCausalLM'],
+      hidden_size: 4096,
+      intermediate_size: 14336,
+      num_hidden_layers: 32,
+      num_attention_heads: 32,
+      num_key_value_heads: 8,
+      vocab_size: 32000,
+      max_position_embeddings: 32768,
+      rms_norm_eps: 1e-5,
+      hidden_act: 'silu',
+      num_local_experts: 8,
+      num_experts_per_tok: 2,
+      rope_theta: 1000000.0,
+      tie_word_embeddings: false,
+    },
+  },
+  {
+    name: 'Qwen2.5 72B',
+    description: 'Large dense model',
+    config: {
+      model_type: 'qwen2',
+      architectures: ['Qwen2ForCausalLM'],
+      hidden_size: 8192,
+      intermediate_size: 29568,
+      num_hidden_layers: 80,
+      num_attention_heads: 64,
+      num_key_value_heads: 8,
+      vocab_size: 152064,
+      max_position_embeddings: 131072,
+      rms_norm_eps: 1e-6,
+      hidden_act: 'silu',
+      rope_theta: 1000000.0,
+      tie_word_embeddings: false,
+    },
+  },
+  {
+    name: 'DeepSeek-V3 (MoE)',
+    description: 'Large MoE with 256 experts',
+    config: {
+      model_type: 'deepseek_v2',
+      architectures: ['DeepseekV3ForCausalLM'],
+      hidden_size: 7168,
+      intermediate_size: 18432,
+      num_hidden_layers: 61,
+      num_attention_heads: 128,
+      num_key_value_heads: 128,
+      vocab_size: 129280,
+      max_position_embeddings: 163840,
+      rms_norm_eps: 1e-6,
+      hidden_act: 'silu',
+      n_routed_experts: 256,
+      num_experts_per_tok: 8,
+      rope_theta: 10000,
+      tie_word_embeddings: false,
+    },
+  },
+];
