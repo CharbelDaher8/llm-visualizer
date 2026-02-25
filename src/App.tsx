@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { parseConfig } from './core/configParser';
 import { buildArchitectureGraph } from './core/architectureMapper';
 import { layoutGraph } from './core/layoutEngine';
@@ -76,6 +77,7 @@ export default function App() {
           onRemoveModel={removeModel}
         />
       </div>
+      <SpeedInsights />
     </div>
   );
 }
